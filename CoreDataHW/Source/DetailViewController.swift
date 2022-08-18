@@ -41,6 +41,7 @@ class DetailViewController: UIViewController {
 //        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
 //        return view
 //    }()
+
 //    private lazy var nameImageView: UIImageView = {
 //        let imageView = UIImageView()
 //        imageView.contentMode = .scaleAspectFit
@@ -48,6 +49,7 @@ class DetailViewController: UIViewController {
 //        imageView.image = UIImage(systemName: "person")
 //        return imageView
 //    }()
+
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
         textField.leftViewMode = .always
@@ -129,6 +131,7 @@ class DetailViewController: UIViewController {
 //         self.spacingView].forEach { stack.addArrangedSubview($0) }
 //        return stack
 //    }()
+
     private lazy var dataStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical

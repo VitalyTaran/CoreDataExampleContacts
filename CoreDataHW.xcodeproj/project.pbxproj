@@ -69,9 +69,6 @@
 			children = (
 				237B7C4728AEA3F7000429E3 /* Resource */,
 				237B7C4628AEA3EE000429E3 /* Source */,
-				237B7C3228AEA3B1000429E3 /* MainViewController.swift */,
-				237B7C4A28AEA4A2000429E3 /* DetailViewController.swift */,
-				237B7C4C28AEA4FE000429E3 /* TableViewCell.swift */,
 				237B7C3728AEA3B1000429E3 /* CoreDataHW.xcdatamodeld */,
 			);
 			path = CoreDataHW;
@@ -88,6 +85,9 @@
 		237B7C4628AEA3EE000429E3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				237B7C4C28AEA4FE000429E3 /* TableViewCell.swift */,
+				237B7C3228AEA3B1000429E3 /* MainViewController.swift */,
+				237B7C4A28AEA4A2000429E3 /* DetailViewController.swift */,
 				237B7C4928AEA437000429E3 /* Storyboards */,
 				237B7C4828AEA41B000429E3 /* App */,
 			);
@@ -398,7 +398,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 85B7L6B49N;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CoreDataHW/Info.plist;
+				INFOPLIST_FILE = CoreDataHW/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -427,7 +427,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 85B7L6B49N;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CoreDataHW/Info.plist;
+				INFOPLIST_FILE = CoreDataHW/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
