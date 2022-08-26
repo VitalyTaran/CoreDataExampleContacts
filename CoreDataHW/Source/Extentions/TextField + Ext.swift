@@ -10,7 +10,6 @@ import UIKit
 extension UITextField {
     func setting(systemImage: String, text: String) {
         self.isUserInteractionEnabled = false
-        //        textField.delegate = self
         self.leftViewMode = .always
         let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
         imageView.contentMode = .scaleAspectFit

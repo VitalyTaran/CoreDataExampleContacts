@@ -11,11 +11,6 @@ class DetailViewController: UIViewController {
 
     var isEdit = Bool()
 
-//    override func setEditing(_ editing: Bool, animated: Bool) {
-//        super.setEditing(editing, animated: animated)
-//
-//    }
-
     private lazy var editButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 12
@@ -41,37 +36,9 @@ class DetailViewController: UIViewController {
         return imageView
     }()
 
-//    private lazy var spacingView: UIView = {
-//        let view = UIView()
-//        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
-//        return view
-//    }()
-
-//    private lazy var nameImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.tintColor = .lightGray
-//        imageView.image = UIImage(systemName: "person")
-//        return imageView
-//    }()
-
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
         textField.setting(systemImage: "person", text: "Яна Брбсва")
-//        textField.isUserInteractionEnabled = false
-////        textField.delegate = self
-//        textField.leftViewMode = .always
-//        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.tintColor = .lightGray
-//        let image = UIImage(systemName: "person")
-//        imageView.image = image
-//        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0,
-//                                                             width: imageView.frame.width + 20,
-//                                                             height: imageView.frame.height + 10))
-//        iconContainerView.addSubview(imageView)
-//        textField.leftView = iconContainerView
-//        textField.text = "Вася Пупкин"
         return textField
     }()
 
@@ -89,36 +56,12 @@ class DetailViewController: UIViewController {
         let textField = UITextField()
         textField.setting(systemImage: "calendar", text: "10.23.4544")
         textField.inputView = birthdayDatePicker
-//        textField.leftViewMode = .always
-//        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.tintColor = .lightGray
-//        let image = UIImage(systemName: "calendar")
-//        imageView.image = image
-//        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0,
-//                                                             width: imageView.frame.width + 20,
-//                                                             height: imageView.frame.height + 10))
-//        iconContainerView.addSubview(imageView)
-//        textField.leftView = iconContainerView
-//        textField.text = "10.23.4544"
         return textField
     }()
 
     private lazy var genderTextField: UITextField = {
         let textField = UITextField()
         textField.setting(systemImage: "person.2.circle", text: "female")
-//        textField.leftViewMode = .always
-//        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.tintColor = .lightGray
-//        let image = UIImage(systemName: "person.2.circle")
-//        imageView.image = image
-//        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0,
-//                                                             width: imageView.frame.width + 20,
-//                                                             height: imageView.frame.height + 10))
-//        iconContainerView.addSubview(imageView)
-//        textField.leftView = iconContainerView
-//        textField.text = "female"
         return textField
     }()
 
@@ -139,19 +82,6 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .systemGray5
         return view
     }()
-
-
-//    private lazy var textFieldStackView: UIStackView = {
-//        let stack = UIStackView()
-//        stack.axis = .horizontal
-//        stack.spacing = 10
-//        stack.distribution = .fillProportionally
-//        stack.alignment = .center
-//        [self.nameImageView,
-//            self.nameTextField,
-//         self.spacingView].forEach { stack.addArrangedSubview($0) }
-//        return stack
-//    }()
 
     private lazy var dataStackView: UIStackView = {
         let stack = UIStackView()
@@ -177,7 +107,6 @@ class DetailViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .systemBackground
 
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonPressed))
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
         setupEditButton(title: "Edit", borderColor: .lightGray)
     }
@@ -222,17 +151,6 @@ class DetailViewController: UIViewController {
         setUnderlineView(lineUnderDateOfBirthTextField, under: dateOfBirthTextField)
         setUnderlineView(lineUnderGenderTextField, under: genderTextField)
 
-//        lineUnderDateOfBirthTextField.snp.makeConstraints { make in
-//            make.leading.trailing.equalTo(dataStackView)
-//            make.top.equalTo(dateOfBirthTextField.snp.bottom)
-//            make.height.equalTo(2)
-//        }
-//
-//        lineUnderGenderTextField.snp.makeConstraints { make in
-//            make.leading.trailing.equalTo(dataStackView)
-//            make.top.equalTo(genderTextField.snp.bottom)
-//            make.height.equalTo(2)
-//        }
     }
 
     private func setupEditButton(title: String, borderColor: UIColor) {
@@ -249,15 +167,11 @@ print("edit")
             nameTextField.isUserInteractionEnabled = true
             dateOfBirthTextField.isUserInteractionEnabled = true
             genderTextField.isUserInteractionEnabled = true
-//            editButton.setTitle("Save", for: .normal)
-//            editButton.layer.borderColor = UIColor.red.cgColor
         } else {
             setupEditButton(title: "Edit", borderColor: .lightGray)
             nameTextField.isUserInteractionEnabled = false
             dateOfBirthTextField.isUserInteractionEnabled = false
             genderTextField.isUserInteractionEnabled = false
-//            editButton.setTitle("Edit", for: .normal)
-//            editButton.layer.borderColor = UIColor.lightGray.cgColor
         }
     }
 
@@ -267,7 +181,7 @@ extension DetailViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if !isEdit {
         if textField == nameTextField {
-            return false; //do not show keyboard nor cursor
+            return false; 
         }
         }
         return true
