@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230A630028BA1EB7004803E7 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230A62FF28BA1EB7004803E7 /* StorageManager.swift */; };
 		235DEB0028AFDBCC00C8B8F5 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235DEAFF28AFDBCC00C8B8F5 /* Contact.swift */; };
 		235DEB0228AFDBEC00C8B8F5 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235DEB0128AFDBEC00C8B8F5 /* Person+CoreDataClass.swift */; };
 		235DEB0528AFDC7200C8B8F5 /* TextField + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235DEB0428AFDC7200C8B8F5 /* TextField + Ext.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		230A62FF28BA1EB7004803E7 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		235DEAFF28AFDBCC00C8B8F5 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		235DEB0128AFDBEC00C8B8F5 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		235DEB0428AFDC7200C8B8F5 /* TextField + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField + Ext.swift"; sourceTree = "<group>"; };
@@ -54,6 +56,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		230A62FE28BA1E96004803E7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				230A62FF28BA1EB7004803E7 /* StorageManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		235DEAFE28AFDBA400C8B8F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +121,7 @@
 		237B7C4628AEA3EE000429E3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				230A62FE28BA1E96004803E7 /* Services */,
 				235DEB0328AFDC4B00C8B8F5 /* Extentions */,
 				235DEAFE28AFDBA400C8B8F5 /* Model */,
 				237B7C4C28AEA4FE000429E3 /* TableViewCell.swift */,
@@ -279,6 +290,7 @@
 				237B7C4B28AEA4A2000429E3 /* DetailViewController.swift in Sources */,
 				235DEB0228AFDBEC00C8B8F5 /* Person+CoreDataClass.swift in Sources */,
 				235DEB0528AFDC7200C8B8F5 /* TextField + Ext.swift in Sources */,
+				230A630028BA1EB7004803E7 /* StorageManager.swift in Sources */,
 				237B7C4D28AEA4FE000429E3 /* TableViewCell.swift in Sources */,
 				237B7C2F28AEA3B1000429E3 /* AppDelegate.swift in Sources */,
 			);

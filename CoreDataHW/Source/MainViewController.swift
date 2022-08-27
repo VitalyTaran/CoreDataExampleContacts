@@ -7,71 +7,12 @@
 
 import UIKit
 import SnapKit
-import CoreData
 
 class MainViewController: UIViewController {
 
-    var contacts = [Contact]()
-
-
-    func createContextManager() {
-//        Ссылка на AppDelegate
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
-//        Создаём контекст
-        let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
-//        Описание сущности
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context) else {return}
-//        Создаём объект
-//        let managedObject = NSManagedObject(entity: entityDescription, insertInto: context)
-        let managedObject = Person(entity: entityDescription, insertInto: context)
-//Установка значений атрибутов
-        let currentDate = Date()
-//        managedObject.setValue("Яна Пупкина", forKey: "name")
-//        managedObject.setValue(currentDate, forKey: "dateOfBirth")
-//        managedObject.setValue("female", forKey: "gender")
-        managedObject.name = "Яна Пупкина"
-        managedObject.dateOfBirth = currentDate
-        managedObject.gender = "female"
-
-//        let name = managedObject.value(forKey: "name")
-//        сохранение данных
-//        appDelegate.saveContext()
-//  Извлекаем данные
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-        do {
-            let results = try context.fetch(fetchRequest)
-            for result in results as! [Person] {
-                let name = result.name
-                let date = result.dateOfBirth
-                let gender = result.gender
-
-                contacts.append(Contact(name: name,
-                                        dateOfBirth: date,
-                                        gender: gender))
-
-                print("name: \(name), date: \(date), gender: \(gender)")
-            }
-    } catch {
-        print(error)
-    }
-
-        // Удаление ВСЕХ данных
-
-        do {
-            let results = try context.fetch(fetchRequest)
-            for result in results as! [NSManagedObject] {
-                context.delete(result)
-
-            }
-        } catch {
-            print(error)
-        }
-
-        appDelegate.saveContext()
-    }
-
-
+    //    var contacts = [Contact]()
+    var contacts = [Person]()
+    let storageManager = StorageManager()
 
     // MARK: - Private Properties
 
@@ -87,13 +28,14 @@ class MainViewController: UIViewController {
     private lazy var enterTextField: UITextField = {
         let textField = UITextField()
 
+        textField.delegate = self
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1.5
         textField.borderStyle = .roundedRect
         textField.layer.borderColor = UIColor.systemGroupedBackground.cgColor
 
-//        textField.backgroundColor = .systemGroupedBackground
+        //        textField.backgroundColor = .systemGroupedBackground
         textField.placeholder = "Enter your name here..."
         return textField
     }()
@@ -119,7 +61,9 @@ class MainViewController: UIViewController {
         setupView()
         setupHierarchy()
         setupLayout()
-        createContextManager()
+        //        storageManager.deleteAllData()
+        contacts = storageManager.fetchAllPerson() ?? []
+        //        createContextManager()
     }
 
     // MARK: - Private functions
@@ -142,7 +86,7 @@ class MainViewController: UIViewController {
 
         enterTextField.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-//            make.width.equalTo(tableView)
+            //            make.width.equalTo(tableView)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.height.equalTo(40)
@@ -159,18 +103,20 @@ class MainViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(button.snp.bottom).offset(20)
             make.leading.trailing.bottom.equalTo(view)
-//            make.trailing.equalTo(view)
-//            make.bottom.equalTo(view)
+            //            make.trailing.equalTo(view)
+            //            make.bottom.equalTo(view)
         }
     }
 
     @objc func buttonAction() {
         guard enterTextField.text != "" else {return}
-        print(enterTextField.text)
+        print(enterTextField.text as Any)
         if let text = enterTextField.text {
+            storageManager.savePerson(name: text)
+            //            contacts.append(Contact(name: text))
+            contacts = storageManager.fetchAllPerson() ?? []
+            //            tableView.reloadData()
 
-            contacts.append(Contact(name: text))
-//            tableView.reloadData()
             tableView.insertRows(at: [IndexPath(row: contacts.count - 1, section: 0)], with: .automatic)
             enterTextField.text = nil
         }
@@ -193,7 +139,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         //        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for:indexPath) as? TableViewCell else { return UITableViewCell() }
         cell.accessoryType = .disclosureIndicator
         var content = cell.defaultContentConfiguration()
-//        content.image = UIImage(systemName: "play")
+        //        content.image = UIImage(systemName: "play")
         content.text = contacts[indexPath.row].name
         cell.contentConfiguration = content
         return cell
@@ -201,6 +147,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            storageManager.deletePerson(person: contacts[indexPath.row])
             contacts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -211,5 +158,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         navigationController?.pushViewController(DetailViewController(), animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
 
+extension MainViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        buttonAction()
+        return true
+    }
 }
