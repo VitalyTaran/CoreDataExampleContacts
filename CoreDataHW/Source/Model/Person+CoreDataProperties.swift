@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 extension Person {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Person> {
@@ -18,7 +17,7 @@ extension Person {
     @NSManaged public var name: String?
     @NSManaged public var dateOfBirth: Date?
     @NSManaged public var gender: String?
-
+    @NSManaged public var avatar: Data?
 }
 
 extension Person : Identifiable {

@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import UIKit
 
 protocol StorageManagerType {
     func savePersonName(_ name: String)
