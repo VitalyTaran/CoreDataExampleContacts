@@ -10,14 +10,14 @@ import SnapKit
 
 class MainViewController: UIViewController {
 
-    //    var contacts = [Contact]()
-    var contacts = [Person]()
+    // MARK: - Properties
+    
     let storageManager = StorageManager()
-
-    // MARK: - Private Properties
+    var presenter: MainPresenterType?
 
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        let tableView = UITableView(frame: .zero,
+                                    style: .insetGrouped)
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
@@ -34,8 +34,6 @@ class MainViewController: UIViewController {
         textField.layer.borderWidth = 1.5
         textField.borderStyle = .roundedRect
         textField.layer.borderColor = UIColor.systemGroupedBackground.cgColor
-
-        //        textField.backgroundColor = .systemGroupedBackground
         textField.placeholder = "Enter your name here..."
         return textField
     }()
@@ -55,28 +53,33 @@ class MainViewController: UIViewController {
     }()
 
     // MARK: - Lyfecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
         setupHierarchy()
         setupLayout()
-        //        storageManager.deleteAllData()
-        contacts = storageManager.fetchAllPerson() ?? []
-        //        createContextManager()
+        presenter?.fetchAllPerson()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        presenter?.fetchAllPerson()
+        tableView.reloadData()
     }
 
     // MARK: - Private functions
 
     private func setupView() {
+
         navigationItem.title = "Users"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-
         view.backgroundColor = .systemBackground
     }
 
     private func setupHierarchy() {
+
         view.addSubview(enterTextField)
         view.addSubview(button)
         view.addSubview(tableView)
@@ -97,68 +100,71 @@ class MainViewController: UIViewController {
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.height.equalTo(40)
-
         }
 
         tableView.snp.makeConstraints { make in
             make.top.equalTo(button.snp.bottom).offset(20)
             make.leading.trailing.bottom.equalTo(view)
-            //            make.trailing.equalTo(view)
-            //            make.bottom.equalTo(view)
         }
     }
 
+    // MARK: - OBJC Functions
+
     @objc func buttonAction() {
+
         guard enterTextField.text != "" else {return}
         print(enterTextField.text as Any)
         if let text = enterTextField.text {
-            storageManager.savePerson(name: text)
-            //            contacts.append(Contact(name: text))
-            contacts = storageManager.fetchAllPerson() ?? []
-            //            tableView.reloadData()
-
-            tableView.insertRows(at: [IndexPath(row: contacts.count - 1, section: 0)], with: .automatic)
+            presenter?.savePersonName(name: text)
+            presenter?.fetchAllPerson()
+            tableView.insertRows(at: [IndexPath(row: ((presenter?.persons.count)!) - 1, section: 0)],
+                                 with: .automatic)
             enterTextField.text = nil
         }
     }
-
-
 }
+
+// MARK: - UITableViewDataSource, UITableViewDelegate
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return contacts.count
+        return presenter?.persons.count ?? 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        //        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for:indexPath) as? TableViewCell else { return UITableViewCell() }
         cell.accessoryType = .disclosureIndicator
         var content = cell.defaultContentConfiguration()
-        //        content.image = UIImage(systemName: "play")
-        content.text = contacts[indexPath.row].name
+        content.text = presenter?.persons[indexPath.row].name
         cell.contentConfiguration = content
         return cell
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+
         if editingStyle == .delete {
-            storageManager.deletePerson(person: contacts[indexPath.row])
-            contacts.remove(at: indexPath.row)
+            presenter?.deletePerson(indexPath: indexPath)
+            presenter?.persons.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+
+        presenter?.pushPerson(by: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension MainViewController: UITextFieldDelegate {
 

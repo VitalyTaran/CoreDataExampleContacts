@@ -13,20 +13,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        let viewController = MainViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-//        navigationController.navigationBar.tintColor = .black
-//        window?.overrideUserInterfaceStyle = .dark
+        let assembly = Assembly()
+        let navigationController = UINavigationController()
+        let router = Router(navigationController: navigationController, assembly: assembly)
+        router.setRootVC()
+
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 
         return true
     }
-
-
-   
-
 }
