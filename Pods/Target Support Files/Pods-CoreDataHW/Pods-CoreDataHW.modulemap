@@ -1,0 +1,6 @@
+framework module Pods_CoreDataHW {
+  umbrella header "Pods-CoreDataHW-umbrella.h"
+
+  export *
+  module * { export * }
+}
