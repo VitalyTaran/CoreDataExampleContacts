@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - Main Protocol
+
 protocol MainPresenterType {
 
     var persons: [Person] { get set }

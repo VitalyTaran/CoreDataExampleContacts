@@ -8,10 +8,11 @@
 import Foundation
 import CoreData
 
-extension PersonModel {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<PersonModel> {
-        return NSFetchRequest<PersonModel>(entityName: "Person")
+extension Person {
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Person> {
+        return NSFetchRequest<Person>(entityName: "Person")
     }
 
     @NSManaged public var name: String?
@@ -20,6 +21,6 @@ extension PersonModel {
     @NSManaged public var avatar: Data?
 }
 
-extension PersonModel : Identifiable {
+extension Person : Identifiable {
 
 }

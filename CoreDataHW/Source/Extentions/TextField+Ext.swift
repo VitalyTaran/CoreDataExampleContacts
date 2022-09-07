@@ -28,6 +28,7 @@ extension UITextField {
     }
 
     func datePicker<T>(target: T,
+                       currentDate: Date,
                        doneAction: Selector,
                        cancelAction: Selector,
                        datePickerMode: UIDatePicker.Mode = .date,
@@ -60,17 +61,17 @@ extension UITextField {
                                                     height: 216))
         datePicker.datePickerMode = datePickerMode
         datePicker.preferredDatePickerStyle = datePickerStyle
+        datePicker.date = currentDate
         self.inputView = datePicker
 
         let toolBar = UIToolbar(frame: CGRect(x: 0,
                                               y: 0,
                                               width: screenWidth,
                                               height: 30))
-        toolBar.setItems([buttonItem(withSystemItemStyle: .done),
+        toolBar.setItems([buttonItem(withSystemItemStyle: .cancel),
                           buttonItem(withSystemItemStyle: .flexibleSpace),
-                          buttonItem(withSystemItemStyle: .cancel)],
+                          buttonItem(withSystemItemStyle: .done)],
                          animated: true)
         self.inputAccessoryView = toolBar
     }
-
 }

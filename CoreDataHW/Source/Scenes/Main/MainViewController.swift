@@ -12,7 +12,6 @@ class MainViewController: UIViewController {
 
     // MARK: - Properties
     
-    let storageManager = StorageManager()
     var presenter: MainPresenterType?
 
     private lazy var tableView: UITableView = {
@@ -89,7 +88,6 @@ class MainViewController: UIViewController {
 
         enterTextField.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            //            make.width.equalTo(tableView)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.height.equalTo(40)
@@ -173,3 +171,4 @@ extension MainViewController: UITextFieldDelegate {
         return true
     }
 }
+

@@ -7,8 +7,6 @@
 
 
 import Foundation
-import UIKit
-import CoreData
 
 // MARK: - Detail Presenter Protocol
 

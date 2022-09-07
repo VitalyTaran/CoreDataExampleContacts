@@ -18,7 +18,6 @@
 		2363FCB228BFBBA7001435D3 /* UIViewConroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2363FCB128BFBBA7001435D3 /* UIViewConroller+Ext.swift */; };
 		2363FCB428BFBBCD001435D3 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2363FCB328BFBBCD001435D3 /* UIImage+Ext.swift */; };
 		2363FCB528BFBEE5001435D3 /* Pods_CoreDataHW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA49AAFADE0CD1672EF37A2 /* Pods_CoreDataHW.framework */; };
-		2363FCB628BFBEE5001435D3 /* Pods_CoreDataHW.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFA49AAFADE0CD1672EF37A2 /* Pods_CoreDataHW.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		237B7C2F28AEA3B1000429E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B7C2E28AEA3B1000429E3 /* AppDelegate.swift */; };
 		237B7C3328AEA3B1000429E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B7C3228AEA3B1000429E3 /* MainViewController.swift */; };
 		237B7C3928AEA3B1000429E3 /* PersonModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 237B7C3728AEA3B1000429E3 /* PersonModel.xcdatamodeld */; };
@@ -27,20 +26,6 @@
 		237B7C4B28AEA4A2000429E3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B7C4A28AEA4A2000429E3 /* DetailViewController.swift */; };
 		23C68FE228B76E87006C051A /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C68FE128B76E87006C051A /* Person+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		2363FCB728BFBEE5001435D3 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				2363FCB628BFBEE5001435D3 /* Pods_CoreDataHW.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		230A62FF28BA1EB7004803E7 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -56,7 +41,6 @@
 		237B7C2B28AEA3B1000429E3 /* CoreDataHW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataHW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		237B7C2E28AEA3B1000429E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		237B7C3228AEA3B1000429E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		237B7C3528AEA3B1000429E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		237B7C3828AEA3B1000429E3 /* CoreDataHW.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataHW.xcdatamodel; sourceTree = "<group>"; };
 		237B7C3A28AEA3B2000429E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		237B7C3D28AEA3B2000429E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -223,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				237B7C3C28AEA3B2000429E3 /* LaunchScreen.storyboard */,
-				237B7C3428AEA3B1000429E3 /* Main.storyboard */,
 			);
 			name = Storyboards;
 			path = ../Source/Storyboards;
@@ -250,7 +233,6 @@
 				237B7C2828AEA3B1000429E3 /* Frameworks */,
 				237B7C2928AEA3B1000429E3 /* Resources */,
 				007D37BCD9FD15A4AE3EF45A /* [CP] Embed Pods Frameworks */,
-				2363FCB728BFBEE5001435D3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -374,14 +356,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		237B7C3428AEA3B1000429E3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				237B7C3528AEA3B1000429E3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		237B7C3C28AEA3B2000429E3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -529,7 +503,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Taran.CoreDataHW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -558,7 +531,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Taran.CoreDataHW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

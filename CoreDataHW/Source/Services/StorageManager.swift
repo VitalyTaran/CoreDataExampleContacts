@@ -6,13 +6,12 @@
 //
 
 import CoreData
-import UIKit
 
 protocol StorageManagerType {
     func savePersonName(_ name: String)
-    func deletePerson(person: PersonModel)
-    func fetchAllPerson() -> [PersonModel]?
-    func updatePerson(_ person: PersonModel,
+    func deletePerson(person: Person)
+    func fetchAllPerson() -> [Person]?
+    func updatePerson(_ person: Person,
                       _ avatar: Data?,
                       _ name: String?,
                       _ dateOfBirth: String?,
@@ -23,7 +22,7 @@ class StorageManager: StorageManagerType {
 
     // MARK: - Properties
 
-    private let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PersonModel")
+    private let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
 
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "PersonModel")
@@ -40,7 +39,7 @@ class StorageManager: StorageManagerType {
     // MARK: - Functions
 
     func savePersonName(_ name: String) {
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "PersonModel",
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person",
                                                                  in: context) else {return}
         let newPerson = Person(entity: entityDescription,
                                insertInto: context)
@@ -48,7 +47,7 @@ class StorageManager: StorageManagerType {
         saveContext()
     }
 
-    func updatePerson(_ person: PersonModel,
+    func updatePerson(_ person: Person,
                       _ avatar: Data?,
                       _ name: String?,
                       _ dateOfBirth: String?,
@@ -69,10 +68,10 @@ class StorageManager: StorageManagerType {
         saveContext()
     }
 
-    func fetchAllPerson() -> [PersonModel]? {
+    func fetchAllPerson() -> [Person]? {
         
         do {
-            let persons = try context.fetch(fetchRequest) as? [PersonModel]
+            let persons = try context.fetch(fetchRequest) as? [Person]
             return persons
         } catch {
             print(error)
@@ -80,7 +79,7 @@ class StorageManager: StorageManagerType {
         }
     }
 
-    func deletePerson(person: PersonModel) {
+    func deletePerson(person: Person) {
         context.delete(person)
         saveContext()
     }

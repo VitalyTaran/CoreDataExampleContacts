@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-@objc(PersonModel)
-public class PersonModel: NSManagedObject {
+@objc(Person)
+public class Person: NSManagedObject {
 
 }
